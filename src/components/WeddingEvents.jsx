@@ -1,6 +1,6 @@
-import { CalendarPlus, Clock, Crown, Flower2, Gem, MapPin, Music, Navigation, Shirt, Sun, Wine } from 'lucide-react'
+import { Clock, Crown, Flower2, Gem, MapPin, Music, Navigation, Shirt, Sun, Wine } from 'lucide-react'
 import { weddingData } from '../config/weddingData'
-import { calendarUrl, formatLongDate, formatTime, mapsDirectionsUrl, monthName, parseLocal } from '../utils/format'
+import { formatLongDate, formatTime, mapsDirectionsUrl, monthName, parseLocal } from '../utils/format'
 import { MarigoldBorder } from './art/Decor'
 import Reveal from './ui/Reveal'
 import SectionHeading from './ui/SectionHeading'
@@ -12,14 +12,6 @@ function EventCard({ event, index, dayNumber }) {
   const Icon = ICONS[event.id] ?? Flower2
   const d = parseLocal(`${event.date}T${event.time}:00`)
   const flip = index % 2 === 1
-  const destination = wedding.mapUrl || mapsDirectionsUrl(`${event.venue}, ${wedding.address || wedding.city}`)
-  const ics = calendarUrl({
-    title: `${event.name} – ${weddingData.groom.firstName} & ${weddingData.bride.firstName}`,
-    start: d,
-    end: new Date(d.getTime() + 3 * 3600 * 1000),
-    location: `${event.venue}, ${wedding.city}`,
-    description: event.description,
-  })
   const isMain = Boolean(event.main)
 
   return (
@@ -30,7 +22,7 @@ function EventCard({ event, index, dayNumber }) {
       >
         {/* image */}
         <div className={`relative aspect-[4/3] md:aspect-auto md:min-h-[420px] ${flip ? 'md:order-2' : ''}`}>
-          <img src={event.image} alt={`Illustration for the ${event.name} ceremony`} className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" width="1200" height="900" />
+          <img src={event.image} alt={event.imageAlt || `Illustration for the ${event.name} ceremony`} className="absolute inset-0 h-full w-full object-cover" style={event.imagePosition ? { objectPosition: event.imagePosition } : undefined} loading="lazy" decoding="async" width="1200" height="900" />
           <div className="absolute inset-0 bg-gradient-to-t from-maroon/55 via-transparent to-transparent" aria-hidden="true" />
           {/* date badge */}
           <div className="absolute left-4 top-4 flex flex-col items-center rounded-2xl bg-ivory/95 px-4 py-2.5 text-maroon backdrop-blur-sm sm:left-6 sm:top-6" style={{ boxShadow: 'inset 0 0 0 1.5px var(--antique-gold)' }}>
@@ -40,6 +32,17 @@ function EventCard({ event, index, dayNumber }) {
           <span className="absolute bottom-4 left-4 rounded-full bg-maroon/85 px-4 py-1.5 font-body text-[0.62rem] font-bold uppercase tracking-[0.3em] text-gold sm:bottom-6 sm:left-6" style={{ boxShadow: 'inset 0 0 0 1px var(--antique-gold)' }}>
             Day {dayNumber}
           </span>
+          {/* photo credit, required by the image's Creative Commons licence */}
+          {event.credit && (
+            <a
+              href={event.credit.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-1.5 right-2.5 font-body text-[0.55rem] text-ivory/75 underline-offset-2 drop-shadow hover:text-ivory hover:underline sm:bottom-2 sm:right-3"
+            >
+              Photo: {event.credit.author} · {event.credit.license}
+            </a>
+          )}
         </div>
 
         {/* content */}
@@ -84,14 +87,6 @@ function EventCard({ event, index, dayNumber }) {
             )}
           </dl>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href={destination} target="_blank" rel="noopener noreferrer" className={isMain ? 'btn-gold' : 'btn-royal'}>
-              <Navigation size={15} aria-hidden="true" /> Get Directions
-            </a>
-            <a href={ics} download={`${event.id}.ics`} className={`btn-ghost ${isMain ? '!text-gold hover:!text-maroon hover:!bg-gold' : ''}`}>
-              <CalendarPlus size={15} aria-hidden="true" /> Add to Calendar
-            </a>
-          </div>
         </div>
       </div>
     </Reveal>
@@ -99,7 +94,9 @@ function EventCard({ event, index, dayNumber }) {
 }
 
 export default function WeddingEvents() {
-  const { events } = weddingData
+  const { events, wedding } = weddingData
+  // every event is at the same venue, so one directions button serves them all
+  const destination = wedding.mapUrl || mapsDirectionsUrl(`${wedding.venue}, ${wedding.address || wedding.city}`)
   const days = [...new Set(events.map((e) => e.date))].sort()
   return (
     <section id="events" className="bg-paper relative overflow-hidden" aria-labelledby="events-title">
@@ -113,6 +110,14 @@ export default function WeddingEvents() {
             {events.map((event, i) => (
               <EventCard key={event.id} event={event} index={i} dayNumber={days.indexOf(event.date) + 1} />
             ))}
+          </div>
+          <div className="mt-12 text-center md:mt-14">
+            <p className="font-body text-sm text-espresso/80">
+              All celebrations are at <span className="font-semibold text-maroon">{wedding.venue}, {wedding.city}</span>
+            </p>
+            <a href={destination} target="_blank" rel="noopener noreferrer" className="btn-royal mt-4">
+              <Navigation size={15} aria-hidden="true" /> Get Directions
+            </a>
           </div>
         </div>
       </div>

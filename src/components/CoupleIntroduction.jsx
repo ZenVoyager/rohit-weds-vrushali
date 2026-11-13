@@ -30,7 +30,7 @@ export default function CoupleIntroduction() {
               <p className="mt-6 font-deva text-xl font-semibold text-maroon sm:text-2xl">{invitation.ganeshNamah}</p>
               <div className="mx-auto mt-4 max-w-xl font-deva text-lg leading-[1.9] text-burgundy sm:text-xl" lang="sa">
                 {invitation.shloka.map((line) => (
-                  <p key={line}>{line}</p>
+                  <p key={line}>{line.replace(/ ([।॥])/g, ' $1')}</p>
                 ))}
               </div>
               <p className="mx-auto mt-3 max-w-md font-display text-[1.05rem] italic leading-snug text-espresso/80">“{invitation.shlokaMeaning}”</p>

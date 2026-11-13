@@ -60,9 +60,9 @@ export default function Footer() {
           <p className="mt-4 font-display text-lg italic text-ivory">{footer.family}</p>
 
           {/* contacts */}
-          <div className="mx-auto mt-10 grid max-w-xl gap-4 text-left sm:grid-cols-2">
+          <div className="mx-auto mt-10 flex max-w-xl flex-wrap justify-center gap-4 text-left">
             {contact.familyContacts.map((c) => (
-              <a key={c.name} href={telHref(c.phone)} className="group flex items-center gap-4 rounded-2xl bg-maroon/55 p-4 transition hover:bg-burgundy/70" style={{ boxShadow: 'inset 0 0 0 1px rgba(212,175,106,0.55)' }}>
+              <a key={c.name} href={telHref(c.phone)} className="group flex w-full items-center gap-4 rounded-2xl bg-maroon/55 p-4 transition hover:bg-burgundy/70 sm:w-auto sm:min-w-[17.5rem] sm:pr-8" style={{ boxShadow: 'inset 0 0 0 1px rgba(212,175,106,0.55)' }}>
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gold text-maroon" aria-hidden="true">
                   <Phone size={18} />
                 </span>
@@ -75,16 +75,13 @@ export default function Footer() {
             ))}
           </div>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            {contact.email && (
+          {contact.email && (
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
               <a href={`mailto:${contact.email}`} className="btn-ghost !text-ivory">
                 <Mail size={15} aria-hidden="true" /> {contact.email}
               </a>
-            )}
-            <a href={whatsappUrl(contact.whatsapp, `Hello! I am writing about ${groom.firstName} & ${bride.firstName}'s wedding.`)} target="_blank" rel="noopener noreferrer" className="btn-ghost !text-ivory">
-              <MessageCircle size={15} aria-hidden="true" /> WhatsApp us
-            </a>
-          </div>
+            </div>
+          )}
 
           {/* share */}
           <div className="mt-12 border-t border-gold/30 pt-8">

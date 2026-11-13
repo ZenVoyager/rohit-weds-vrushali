@@ -59,7 +59,9 @@ const data = {
       date: '2026-12-01',
       time: '10:00',
       venue: 'Tiara Palace',
-      image: '/images/gallery-4.svg',
+      image: '/images/events/engagement.jpg',
+      imageAlt: "The groom slipping a ring onto the bride's mehndi-adorned hand",
+      credit: { author: 'Aasthap dsc', license: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Ring_ceremony_in_Hindu_wedding.jpg' },
       description: 'The exchange of rings in the presence of family and friends — the first step of our new journey together.',
     },
     {
@@ -68,7 +70,9 @@ const data = {
       date: '2026-12-01',
       time: '12:00',
       venue: 'Tiara Palace',
-      image: '/images/event-haldi.svg',
+      image: '/images/events/haldi.jpg',
+      imageAlt: 'Mehndi-adorned hands dipping a brush into haldi paste in a golden bowl with marigolds',
+      imagePosition: '50% 54%',
       description: 'A joyful afternoon of turmeric, marigold petals and blessings from family. Wear something you are happy to get colourful!',
     },
     {
@@ -78,7 +82,9 @@ const data = {
       time: '20:00',
       onwards: true,
       venue: 'Tiara Palace',
-      image: '/images/event-sangeet.svg',
+      image: '/images/events/sangeet.jpg',
+      imageAlt: 'Rajasthani folk musicians performing at night',
+      credit: { author: 'Tejas Mairal', license: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Jaisalmer_Rajasthani_Folk_dance_song_band2.jpg' },
       description: 'An evening of music, dance and dhol beats by both families, followed by dinner under a canopy of lights.',
     },
     {
@@ -87,8 +93,10 @@ const data = {
       date: '2026-12-02',
       time: '12:00',
       venue: 'Tiara Palace',
-      image: '/images/event-wedding.svg',
-      description: 'A traditional ceremony of welcome and blessings as the two families come together.',
+      image: '/images/events/pehnawa.jpg',
+      imageAlt: 'Family members receiving wrapped clothes and gifts at a ceremony',
+      credit: { author: 'Appaiah', license: 'CC BY-SA 2.0', url: 'https://commons.wikimedia.org/wiki/File:Gift_giving_ceremony.jpg' },
+      description: 'A traditional ceremony where the bride’s family honours the groom’s parents, brothers and relatives with new clothes and gifts.',
     },
     {
       id: 'reception',
@@ -98,15 +106,17 @@ const data = {
       onwards: true,
       main: true,
       venue: 'Tiara Palace',
-      image: '/images/event-reception.svg',
-      description: 'A grand dinner under crystal chandeliers to celebrate the couple with music, laughter and your blessings.',
+      image: '/images/events/reception.jpg',
+      imageAlt: 'An evening reception lawn with a palace stage, blossom trees and lights',
+      imagePosition: '50% 22%', // which part of a tall photo stays in view
+      description: 'A grand evening of dinner under the open sky to celebrate the couple with music, laughter and your blessings.',
     },
   ],
 
   // Background music: starts when the guest opens the invitation. Drop an .mp3 into /public/audio
   // and point `src` at it. Leave `src` empty to turn the music (and its button) off.
   music: {
-    src: '/audio/wedding-song.mp3',
+    src: '/audio/song for wedding invitation.mp3',
     volume: 0.3,
   },
 

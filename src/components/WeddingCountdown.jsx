@@ -13,14 +13,14 @@ const Digit = memo(function Digit({ value, label }) {
   return (
     <div className="text-center">
       <div
-        className="relative mx-auto grid h-[5.6rem] w-[4.4rem] place-items-center overflow-hidden rounded-2xl bg-ivory sm:h-32 sm:w-28 md:h-36 md:w-32"
+        className="relative mx-auto grid h-[4.9rem] w-[3.8rem] place-items-center min-[370px]:h-[5.6rem] min-[370px]:w-[4.4rem] overflow-hidden rounded-2xl bg-ivory sm:h-32 sm:w-28 md:h-36 md:w-32"
         style={{ boxShadow: 'inset 0 0 0 2px var(--antique-gold), 0 0 0 5px rgba(212,175,106,0.25), 0 24px 40px -20px rgba(0,0,0,0.65)' }}
       >
         <span className="absolute inset-x-0 top-1/2 h-px bg-gold/50" aria-hidden="true" />
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.span
             key={text}
-            className="font-display text-[2.6rem] font-semibold leading-none tabular-nums text-maroon sm:text-6xl md:text-7xl"
+            className="font-display text-[2.2rem] font-semibold leading-none tabular-nums min-[370px]:text-[2.6rem] text-maroon sm:text-6xl md:text-7xl"
             initial={reduce ? false : { y: '-70%', opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={reduce ? { opacity: 0 } : { y: '70%', opacity: 0 }}
@@ -30,7 +30,7 @@ const Digit = memo(function Digit({ value, label }) {
           </motion.span>
         </AnimatePresence>
       </div>
-      <p className="mt-3 font-body text-[0.62rem] font-bold uppercase tracking-[0.3em] text-champagne sm:text-xs">{label}</p>
+      <p className="mt-3 font-body text-[0.58rem] font-bold uppercase tracking-[0.22em] text-champagne min-[370px]:text-[0.62rem] min-[370px]:tracking-[0.3em] sm:text-xs">{label}</p>
     </div>
   )
 })
@@ -47,7 +47,7 @@ export default function WeddingCountdown() {
         <Reveal className="container-royal max-w-4xl text-center">
           <p className="font-script text-3xl text-gold md:text-4xl">{expired ? 'Happily ever after' : 'Counting every moment'}</p>
           <h2 id="countdown-title" className="mt-1 text-[length:var(--fs-h2)] font-semibold text-ivory">
-            {expired ? 'The celebrations have begun' : 'Until We Say “I Do”'}
+            {expired ? 'The celebrations have begun' : 'Until We Say “I Do”'}
           </h2>
           <OrnamentDivider className="mt-4" />
 
@@ -59,7 +59,7 @@ export default function WeddingCountdown() {
               <p className="mx-auto mt-4 max-w-md text-champagne">Thank you for being part of our celebration. We are so grateful for your blessings!</p>
             </div>
           ) : (
-            <div className="mt-12 flex justify-center gap-3 sm:gap-6" role="timer" aria-live="off" aria-label={`${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds until the wedding`}>
+            <div className="mt-12 flex justify-center gap-2.5 min-[370px]:gap-3 sm:gap-6" role="timer" aria-live="off" aria-label={`${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds until the wedding`}>
               <Digit value={days} label="Days" />
               <Digit value={hours} label="Hours" />
               <Digit value={minutes} label="Minutes" />
@@ -68,7 +68,7 @@ export default function WeddingCountdown() {
           )}
 
           <p className="mt-12 font-display text-xl italic text-champagne sm:text-2xl">
-            {formatLongDate(wedding.date)} · {formatTime(wedding.date)}
+            {formatLongDate(wedding.date)} · <span className="whitespace-nowrap">{formatTime(wedding.date)}</span>
           </p>
           <p className="mt-1 font-body text-[0.7rem] uppercase tracking-[0.34em] text-gold">
             {wedding.venue}, {wedding.city}
