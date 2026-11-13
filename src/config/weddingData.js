@@ -105,7 +105,7 @@ const data = {
   // and point `src` at it. Leave `src` empty to turn the music (and its button) off.
   music: {
     src: '/audio/wedding-song.mp3',
-    volume: 0.5,
+    volume: 0.3,
   },
 
   video: {

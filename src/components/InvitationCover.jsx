@@ -201,7 +201,7 @@ export default function InvitationCover({ opened, onOpen }) {
           >
             <span className="font-display text-lg tracking-wide text-ivory sm:text-xl">{formatLongDate(wedding.date)}</span>
             <span className="font-body text-[0.65rem] uppercase tracking-[0.34em] text-gold">
-              {wedding.venue} · {wedding.venue}
+              {wedding.venue} · {wedding.city}
             </span>
           </motion.div>
         </div>
@@ -211,11 +211,11 @@ export default function InvitationCover({ opened, onOpen }) {
           className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1.5 rounded-full bg-maroon/80 px-5 py-2.5 font-body text-[0.6rem] uppercase tracking-[0.34em] text-champagne backdrop-blur-sm"
           aria-label="Scroll to the invitation"
         >
-          <span>Scroll</span>
+          {/* left padding = letter-spacing, so the word is optically centred */}
+          <span className="pl-[0.34em]">Scroll</span>
           <span className="relative block h-7 w-[18px] rounded-full border-[1.5px] border-gold/80">
-            <span className="absolute left-1/2 top-1.5 block h-1.5 w-1.5 -translate-x-1/2 animate-scroll-dot rounded-full bg-gold" />
+            <span className="absolute inset-x-0 top-1.5 mx-auto block h-1.5 w-1.5 animate-scroll-dot rounded-full bg-gold" />
           </span>
-          
         </a>
       </section>
     </>
