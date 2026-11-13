@@ -24,6 +24,8 @@ const data = {
     parents: 'Shri D.S. Patil Ji',
     description: 'A beautiful soul full of love and happiness.',
     image: '/images/bride.jpg',
+    imageZoom: 1.7, // zoom into the photo; 1 = no zoom
+    imageFocus: '56% 40%', // point to zoom towards (x y)
     family: ['Daughter of Shri D.S. Patil Ji'],
   },
 

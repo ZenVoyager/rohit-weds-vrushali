@@ -15,6 +15,8 @@ function Profile({ person, role, side }) {
           <div className="relative rounded-t-[999px] rounded-b-[26px] p-[7px]" style={{ background: 'linear-gradient(160deg,#EFD9A3,#D4AF6A 50%,#A98343)', boxShadow: '0 28px 50px -24px rgba(59,33,28,0.6)' }}>
             <div className="rounded-t-[999px] rounded-b-[20px] bg-cream p-[6px]">
               <div className="aspect-[4/5] w-full overflow-hidden rounded-t-[999px] rounded-b-[16px]">
+                {/* optional per-photo zoom (imageZoom) towards a focal point (imageFocus) */}
+                <div className="h-full w-full" style={person.imageZoom ? { transform: `scale(${person.imageZoom})`, transformOrigin: person.imageFocus || '50% 40%' } : undefined}>
                 <img
                   src={person.image}
                   alt={`Portrait of ${person.name}, the ${role.toLowerCase()}`}
@@ -24,6 +26,7 @@ function Profile({ person, role, side }) {
                   width="800"
                   height="1000"
                 />
+                </div>
               </div>
             </div>
           </div>
