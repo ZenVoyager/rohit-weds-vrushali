@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --royal-maroon: #6B1728;
+  --wedding-burgundy: #8B2635;
+  --antique-gold: #D4AF6A;
+  --warm-ivory: #F8F0DF;
+  --champagne-beige: #E8D5B5;
+  --dark-espresso: #3B211C;
+  --terracotta-rose: #B76E55;
+  --soft-cream: #FFF9EF;
+
+  /* Same palette as space-separated RGB channels, so Tailwind opacity modifiers work (e.g. bg-maroon/60). */
+  --royal-maroon-rgb: 107 23 40;
+  --wedding-burgundy-rgb: 139 38 53;
+  --antique-gold-rgb: 212 175 106;
+  --warm-ivory-rgb: 248 240 223;
+  --champagne-beige-rgb: 232 213 181;
+  --dark-espresso-rgb: 59 33 28;
+  --terracotta-rose-rgb: 183 110 85;
+  --soft-cream-rgb: 255 249 239;
+
+  /* Display scale (fluid) */
+  --fs-hero: clamp(3rem, min(13vw, 12.5vh), 7rem);
+  --fs-h2: clamp(2.4rem, 6vw, 4rem);
+  --fs-h3: clamp(1.6rem, 3.6vw, 2.2rem);
+  --header-safe: env(safe-area-inset-top, 0px);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    background: var(--royal-maroon);
+  }
+  body {
+    margin: 0;
+    font-family: 'Lato', system-ui, sans-serif;
+    color: var(--dark-espresso);
+    background: var(--warm-ivory);
+    line-height: 1.7;
+    overflow-x: hidden;
+    font-variant-numeric: lining-nums;
+    font-feature-settings: 'lnum' 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    color: var(--royal-maroon);
+    line-height: 1.1;
+    font-weight: 600;
+    margin: 0;
+  }
+  img, svg, video { max-width: 100%; }
+  button { font-family: inherit; }
+  :focus-visible {
+    outline: 2px solid var(--antique-gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  ::selection { background: var(--antique-gold); color: var(--royal-maroon); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .section-pad { @apply px-5 py-20 sm:px-8 md:py-28; }
+  .container-royal { @apply mx-auto w-full max-w-6xl; }
+
+  /* ---- Light sections: layered ivory paper, soft glows, fine jaali lattice, grain ---- */
+  .bg-paper,
+  .bg-paper-cream { isolation: isolate; }
+  .bg-paper {
+    background-color: var(--warm-ivory);
+    background-image:
+      radial-gradient(ellipse 60% 38% at 14% 6%, rgba(255, 249, 239, 0.95), transparent 70%),
+      radial-gradient(ellipse 55% 45% at 90% 94%, rgba(232, 213, 181, 0.6), transparent 70%),
+      radial-gradient(ellipse 70% 50% at 50% 50%, rgba(183, 110, 85, 0.07), transparent 72%),
+      url('/images/paper-grain.svg'),
+      url('/images/pattern-jaali.svg');
+    background-size: auto, auto, auto, 240px 240px, 160px 160px;
+  }
+  .bg-paper-cream {
+    background-color: var(--soft-cream);
+    background-image:
+      radial-gradient(ellipse 60% 40% at 86% 4%, rgba(232, 213, 181, 0.5), transparent 70%),
+      radial-gradient(ellipse 55% 45% at 8% 96%, rgba(212, 175, 106, 0.16), transparent 70%),
+      url('/images/paper-grain.svg'),
+      url('/images/pattern-jaali.svg');
+    background-size: auto, auto, 240px 240px, 160px 160px;
+  }
+  /* real flowers tucked into two corners of every light section */
+  .bg-paper::before,
+  .bg-paper-cream::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: url('/images/floral-tl.svg'), url('/images/floral-br.svg');
+    background-repeat: no-repeat;
+    background-position: left top, right bottom;
+    background-size: clamp(96px, 21vw, 300px), clamp(96px, 21vw, 300px);
+    opacity: 0.9;
+  }
+
+  /* ---- Dark sections ---- */
+  .bg-maroon-pattern {
+    background-color: var(--royal-maroon);
+    background-image:
+      radial-gradient(ellipse at center, transparent 52%, rgba(28, 5, 11, 0.55) 100%),
+      linear-gradient(115deg, transparent 34%, rgba(255, 233, 196, 0.055) 47%, transparent 60%),
+      radial-gradient(ellipse 70% 46% at 50% 0%, rgba(212, 175, 106, 0.2), transparent 72%),
+      radial-gradient(ellipse 85% 65% at 50% 55%, rgba(139, 38, 53, 0.7), transparent 78%),
+      url('/images/pattern-jaali-gold.svg'),
+      linear-gradient(180deg, #7a1d30, var(--royal-maroon) 50%, #55101f);
+    background-size: auto, auto, auto, auto, 160px 160px, auto;
+  }
+  /* extra ornament for full-width dark sections: lace trim, corner mandalas, drifting gold dust */
+  .bg-maroon-rich { isolation: isolate; }
+  .bg-maroon-rich::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: url('/images/trim-scallop.svg'), url('/images/trim-scallop-flip.svg'), url('/images/corner-mandala-tl.svg'), url('/images/corner-mandala-br.svg');
+    background-repeat: repeat-x, repeat-x, no-repeat, no-repeat;
+    background-position: left top, left bottom, left top, right bottom;
+    background-size: 28px 24px, 28px 24px, clamp(130px, 26vw, 300px), clamp(130px, 26vw, 300px);
+  }
+  .bg-maroon-rich::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: -240px;
+    z-index: -1;
+    pointer-events: none;
+    --d: rgba(239, 217, 163, 0.85);
+    background-image:
+      radial-gradient(circle at 12% 18%, var(--d) 0, var(--d) 1.3px, transparent 2.8px),
+      radial-gradient(circle at 34% 64%, var(--d) 0, var(--d) 1px, transparent 2.2px),
+      radial-gradient(circle at 58% 12%, var(--d) 0, var(--d) 1.6px, transparent 3.2px),
+      radial-gradient(circle at 76% 48%, var(--d) 0, var(--d) 1.1px, transparent 2.4px),
+      radial-gradient(circle at 90% 86%, var(--d) 0, var(--d) 1.4px, transparent 3px),
+      radial-gradient(circle at 46% 92%, var(--d) 0, var(--d) 1px, transparent 2.2px),
+      radial-gradient(circle at 68% 76%, var(--d) 0, var(--d) 1.2px, transparent 2.6px);
+    background-size: 240px 240px;
+    opacity: 0.7;
+    animation: dustRise 56s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bg-maroon-rich::after { animation: none; }
+  }
+
+  /* Gold foil text */
+  .gold-text {
+    background: linear-gradient(100deg, #b38e4a 0%, #f0dba4 30%, var(--antique-gold) 50%, #f0dba4 70%, #b38e4a 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Buttons */
+  .btn-royal {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-body text-[0.78rem] font-bold uppercase tracking-[0.2em] transition duration-300;
+    min-height: 48px;
+    background: var(--royal-maroon);
+    color: var(--warm-ivory);
+    box-shadow: inset 0 0 0 1.5px var(--antique-gold), 0 10px 24px -12px rgba(107, 23, 40, 0.7);
+  }
+  .btn-royal:hover { background: var(--wedding-burgundy); transform: translateY(-2px); }
+  .btn-royal:active { transform: translateY(0); }
+  .btn-gold {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-body text-[0.78rem] font-bold uppercase tracking-[0.2em] transition duration-300;
+    min-height: 48px;
+    background: linear-gradient(135deg, #e9cf95, var(--antique-gold) 55%, #b38e4a);
+    color: var(--royal-maroon);
+    box-shadow: 0 10px 24px -12px rgba(0, 0, 0, 0.6);
+  }
+  .btn-gold:hover { transform: translateY(-2px); filter: brightness(1.06); }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-body text-[0.72rem] font-bold uppercase tracking-[0.18em] transition duration-300;
+    min-height: 44px;
+    color: var(--royal-maroon);
+    box-shadow: inset 0 0 0 1.5px var(--antique-gold);
+    background: transparent;
+  }
+  .btn-ghost:hover { background: var(--royal-maroon); color: var(--warm-ivory); }
+
+  /* Form controls */
+  .field {
+    @apply w-full rounded-xl border bg-cream px-4 py-3 font-body text-[1rem] text-espresso outline-none transition;
+    border-color: rgba(212, 175, 106, 0.7);
+    min-height: 48px;
+  }
+  .field:focus { border-color: var(--royal-maroon); box-shadow: 0 0 0 3px rgba(212, 175, 106, 0.35); }
+  .field.has-error { border-color: var(--wedding-burgundy); background: #fff3ee; }
+  .label { @apply mb-1.5 block font-body text-[0.72rem] font-bold uppercase tracking-[0.18em] text-maroon; }
+}
+
+/* Hide scrollbars on horizontal helper rows */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* Prevent iOS zoom on inputs */
+input, select, textarea { font-size: 16px; }
+
+@keyframes dustRise {
+  to { transform: translateY(-240px); }
+}
