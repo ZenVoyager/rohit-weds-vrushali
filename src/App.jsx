@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useScrollLock } from './hooks/useScrollLock'
 import InvitationCover from './components/InvitationCover'
 import CoupleIntroduction from './components/CoupleIntroduction'
@@ -8,13 +8,16 @@ import WeddingEvents from './components/WeddingEvents'
 import WeddingCountdown from './components/WeddingCountdown'
 import Footer from './components/Footer'
 import SiteMenu from './components/SiteMenu'
+import MusicPlayer from './components/MusicPlayer'
 
 export default function App() {
   // `?open` skips the gate (handy for sharing deep links / testing).
   const [opened, setOpened] = useState(() => new URLSearchParams(window.location.search).has('open'))
   useScrollLock(!opened)
+  const musicRef = useRef(null)
 
   const open = useCallback(() => {
+    musicRef.current?.start() // must run inside the click so the browser allows sound
     setOpened(true)
     window.scrollTo({ top: 0 })
   }, [])
@@ -37,6 +40,7 @@ export default function App() {
       </main>
       <Footer />
       <SiteMenu visible={opened} />
+      <MusicPlayer ref={musicRef} visible={opened} />
     </>
   )
 }

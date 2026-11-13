@@ -46,19 +46,6 @@ export default function CoupleIntroduction() {
                 <span className="font-names text-[length:clamp(2.8rem,8.5vw,4.8rem)] font-semibold italic leading-none">{bride.name}</span>
               </h2>
 
-              <div className="mx-auto mt-10 grid max-w-xl grid-cols-1 gap-6 sm:grid-cols-[1fr_auto_1fr] sm:gap-8">
-                <div>
-                  <p className="font-body text-[0.65rem] uppercase tracking-[0.3em] text-terracotta">Son of</p>
-                  <p className="mt-1 font-heading text-lg text-maroon">{groom.parents}</p>
-                </div>
-                <span className="mx-auto hidden w-px bg-gold/70 sm:block" aria-hidden="true" />
-                <span className="mx-auto block h-px w-24 bg-gold/70 sm:hidden" aria-hidden="true" />
-                <div>
-                  <p className="font-body text-[0.65rem] uppercase tracking-[0.3em] text-terracotta">Daughter of</p>
-                  <p className="mt-1 font-heading text-lg text-maroon">{bride.parents}</p>
-                </div>
-              </div>
-
               <div className="mx-auto mt-10 max-w-md rounded-2xl border border-gold/60 bg-champagne/45 px-6 py-5">
                 <p className="font-display text-xl font-semibold text-maroon">{formatLongDate(wedding.date)}</p>
                 <p className="mt-1 font-body text-sm tracking-wide text-espresso/80">

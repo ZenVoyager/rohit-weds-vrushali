@@ -10,12 +10,12 @@ import { withBase } from '../utils/asset'
 
 const data = {
   groom: {
-    name: 'Rohit Rawat',
+    name: 'Dr. Rohit Rawat',
     firstName: 'Rohit',
-    parents: 'Shri Bharat Singh Rawat Ji',
+    parents: 'Late Shri Bharat Singh Rawat Ji',
     description: 'A wonderful person with a beautiful heart.',
     image: '/images/groom.jpg',
-    family: ['Son of Shri Bharat Singh Rawat Ji'],
+    family: ['Son of Late Shri Bharat Singh Rawat Ji'],
   },
 
   bride: {
@@ -28,8 +28,8 @@ const data = {
   },
 
   wedding: {
-    // First function of the celebrations — drives the cover, scratch cards and countdown.
-    date: '2026-12-01T10:00:00',
+    // Main day (Reception) — drives the cover, scratch cards, countdown and footer.
+    date: '2026-12-02T20:00:00',
     venue: 'Tiara Palace',
     city: 'Elegant Garden',
     address: '',
@@ -100,6 +100,13 @@ const data = {
       description: 'A grand dinner under crystal chandeliers to celebrate the couple with music, laughter and your blessings.',
     },
   ],
+
+  // Background music: starts when the guest opens the invitation. Drop an .mp3 into /public/audio
+  // and point `src` at it. Leave `src` empty to turn the music (and its button) off.
+  music: {
+    src: '/audio/wedding-song.mp3',
+    volume: 0.5,
+  },
 
   video: {
     title: 'Our Pre-Wedding Film',
