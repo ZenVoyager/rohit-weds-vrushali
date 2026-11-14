@@ -7,7 +7,7 @@ import { Mandala } from './art/Decor'
 const LINKS = [
   ['welcome', 'Invitation'],
   ['date', 'Save the Date'],
-  ['couple', 'Bride & Groom'],
+  ['couple', 'Groom & Bride'],
   ['events', 'Wedding Events'],
   ['countdown', 'Countdown'],
   ['footer', 'Contact'],

@@ -15,6 +15,9 @@ const data = {
     parents: 'Late Shri Bharat Singh Rawat Ji',
     description: 'A wonderful person with a beautiful heart.',
     image: '/images/groom.jpg',
+    imagePosition: '50% 75%', // which part of a tall photo fills the frame (x y)
+    imageZoom: 1.45, // zoom into the photo; 1 = no zoom
+    imageFocus: '53% 72%', // point to zoom towards (x y)
     family: ['Son of Late Shri Bharat Singh Rawat Ji'],
   },
 
@@ -24,8 +27,9 @@ const data = {
     parents: 'Shri D.S. Patil Ji',
     description: 'A beautiful soul full of love and happiness.',
     image: '/images/bride.jpg',
-    imageZoom: 1.7, // zoom into the photo; 1 = no zoom
-    imageFocus: '56% 40%', // point to zoom towards (x y)
+    imagePosition: '50% 80%', // which part of a tall photo fills the frame (x y)
+    imageZoom: 1.25, // zoom into the photo; 1 = no zoom
+    imageFocus: '55% 65%', // point to zoom towards (x y)
     family: ['Daughter of Shri D.S. Patil Ji'],
   },
 
@@ -33,7 +37,7 @@ const data = {
     // Main day (Reception) — drives the cover, scratch cards, countdown and footer.
     date: '2026-12-02T20:00:00',
     venue: 'Tiara Palace',
-    city: 'Elegant Garden',
+    city: 'Elegant Green Garden',
     address: '',
     hashtag: '#RohitWedsVrushali',
     // Google Maps share link for the venue (used by every “Get Directions” button).

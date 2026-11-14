@@ -20,6 +20,7 @@ function Profile({ person, role, side }) {
                 <img
                   src={person.image}
                   alt={`Portrait of ${person.name}, the ${role.toLowerCase()}`}
+                  style={person.imagePosition ? { objectPosition: person.imagePosition } : undefined}
                   className="h-full w-full object-cover object-top transition-transform duration-[1400ms] ease-out hover:scale-[1.05]"
                   loading="lazy"
                   decoding="async"
@@ -60,7 +61,7 @@ export default function CoupleSection() {
       <div className="section-pad">
         <div className="container-royal">
           <div id="couple-title">
-            <SectionHeading eyebrow="Meet the" title="Bride & Groom" subtitle="Two hearts, two families, one beautiful beginning." />
+            <SectionHeading eyebrow="Meet the" title="Groom & Bride" subtitle="Two hearts, two families, one beautiful beginning." />
           </div>
           <div className="mt-16 grid items-start gap-20 md:grid-cols-2 md:gap-10 lg:gap-20">
             <Profile person={groom} role="The Groom" side="left" />
